@@ -1,13 +1,14 @@
 import React from 'react';
-import MainNav from './MainNav';
 
-const Header = props => {
+import { SearchForm } from './SearchForm';
+import { Nav } from './Nav';
+
+export const Header = ({ retrievePhotos }) => {
   return (
     <header>
-      <h1>Galleria</h1>
-      <MainNav />
+      <h1>Gallery App</h1>
+      <SearchForm retrievePhotos={retrievePhotos} />
+      <Nav />
     </header>
   );
 };
-
-export default Header;

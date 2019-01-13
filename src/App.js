@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import config from '../src/config/config';
 
 // components
-import Header from './components/Header';
-import { Home } from './components/Home';
+import { Header } from './components/Header';
 import { Gallery } from './components/Gallery';
-import { Search } from './components/Search';
+import { ErrorPage } from './components/ErrorPage';
+
 class App extends Component {
   state = {
     searches: {
@@ -45,15 +45,12 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
-          <Header />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/gallery" component={Gallery} />
-          <Route
-            exact
-            path="/search"
-            render={() => <Search onSearch={this.retrievePhotos} />}
-          />
+        <div className="container">
+          <Header retrievePhotos={this.retrievePhotos} />
+          <Switch>
+            <Route exact path="/" component={Gallery} />
+            <Route component={ErrorPage} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
