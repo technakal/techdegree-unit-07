@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Gallery App
 
-## Available Scripts
+## Techdegree Unit 07
 
-In the project directory, you can run:
+### Requirements
 
-### `npm start`
+#### Priority 1
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Use create-react-app
+- Use React Router
+  - Use Route, NavLink, and Link.
+  - Provide a Search link for users to search for photos
+  - Using the nav links should navigate to the appropriate route.
+  - The URL should reflect the current route.
+  - The app should include at least three topic links (and their associated routes), which return galleries related to that topic.
+  - Queue up the galleries at load, so that you don't have to request each time the topic is selected.
+- Make the app match the index.html, Results, and No-Results layouts.
+- Use App.js as the main file for the app.
+  - Manage as much state as possible in this file.
+- Create stateless components for your UI elements. Examples include:
+  - Header
+  - Nav
+  - Gallery
+  - Gallery item
+  - Search
+- Include a search feature to search for other galleries.
+  - Make it a stateless component.
+  - Make a route for it.
+- Use the flickr API.
+  - Create a config.js file to store your API key. Don't commit it to Github.
+  - Fetch the data from Flickr using fetch API or axios.
+  - Manage this fetching in App.js.
+- Display images from the api.
+  - Include a key on each iterated element.
+  - Dynamically display the title of the gallery using props.
+  - Display the current route in the URL.
+  - Display no more than 24 images in a gallery.
+- Use code comments.
+- Ensure cross-browser support.
+- Ensure there are no errors in the console.
+- `npm start` starts the app.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### Priority 2
 
-### `npm test`
+- Add a loading indicator that displays each time the app fetches new data.
+- Display a friendly "no results found" when a search fails to return any data.
+- Include a 404 route with a friendly 404 message.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Resources
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
+#### Code Splitting
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+#### Analyzing the Bundle Size
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+#### Making a Progressive Web App
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+#### Advanced Configuration
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+#### Deployment
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
+#### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
