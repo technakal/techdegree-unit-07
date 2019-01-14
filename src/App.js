@@ -9,34 +9,32 @@ import { ErrorPage } from './components/ErrorPage';
 
 class App extends Component {
   state = {
-    searches: {
-      dogs: [],
-      'guinea-pigs': [],
-    },
+    searches: [],
   };
 
-  baseURL = `https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&extras=description,url_m&per_page=24`;
+  baseURL = `https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&extras=description,url_m&per_page=24&api_key=${
+    config.FLICKR_KEY
+  }&nojsoncallback=1&tags=`;
 
   componentDidMount() {
-    const defaultSearches = Object.keys(this.state.searches);
-    defaultSearches.forEach(key => this.retrievePhotos(key));
+    const defaultSearches = ['popular', 'cats', 'guinea-pigs'];
+    defaultSearches.forEach(key => {
+      const searchURL = this.baseURL + key;
+      this.retrievePhotos(searchURL, key);
+    });
   }
 
-  retrievePhotos = searchTerm => {
-    const searchURL = `${this.baseURL}&tags=${searchTerm}&api_key=${
-      config.FLICKR_KEY
-    }&nojsoncallback=1`;
-    fetch(searchURL)
+  retrievePhotos = (url, key) => {
+    fetch(url)
       .then(response => response.json())
       .then(responseData => {
         const dataObject = {
+          topic: key,
           currentPage: responseData.photos.page,
           photos: responseData.photos.photo,
         };
-        const searchObject = this.state.searches;
-        searchObject[searchTerm] = dataObject;
         this.setState({
-          searches: searchObject,
+          searches: [dataObject, ...this.state.searches],
         });
       })
       .catch(error => console.error(error));
@@ -48,7 +46,11 @@ class App extends Component {
         <div className="container">
           <Header retrievePhotos={this.retrievePhotos} />
           <Switch>
-            <Route exact path="/" component={Gallery} />
+            <Route
+              exact
+              path="/"
+              component={() => <Gallery photos={this.state.searches} />}
+            />
             <Route component={ErrorPage} />
           </Switch>
         </div>

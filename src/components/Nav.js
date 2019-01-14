@@ -1,18 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export const Nav = ({ match }) => {
+export const Nav = props => {
   return (
     <nav className="main-nav">
       <ul>
         <li>
-          <NavLink to="/gallery/cats">Cats</NavLink>
+          <NavLink to="/">Trending</NavLink>
         </li>
         <li>
-          <NavLink to="/gallery/dogs">Dogs</NavLink>
+          <NavLink to="/topics">Topics</NavLink>
         </li>
         <li>
-          <NavLink to="/gallery/guinea-pigs">Guinea Pigs</NavLink>
+          <NavLink to="/search">History</NavLink>
         </li>
       </ul>
     </nav>

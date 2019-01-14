@@ -46,6 +46,23 @@
 - Display a friendly "no results found" when a search fails to return any data.
 - Include a 404 route with a friendly 404 message.
 
+### Design
+
+#### App Flow
+
+- Landing page
+  - Header
+  - Gallery (trending)
+    - Gallery Items
+- Topics Page
+  - Header
+  - Topics Nav
+  - Gallery (topic)
+    - Gallery Items
+- Search History Page
+  - Header
+  - Search history
+
 ### Resources
 
 #### Code Splitting

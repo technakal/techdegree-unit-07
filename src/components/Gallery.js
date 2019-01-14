@@ -4,15 +4,15 @@ import { GalleryItem } from './GalleryItem';
 import { NoResults } from './NoResults';
 
 export const Gallery = ({ photos }) => {
-  const showGallery = true;
   return (
     <div className="photo-container">
       <h2>Gallery</h2>
       <ul>
-        {showGallery ? (
+        {photos.length > 0 ? (
           <GalleryItem
-            url={'https://via.placeholder.com/150'}
-            title="Placeholder"
+            url={photos[0].photos[0].url_m}
+            img_url={photos[0].photos[0].url_m}
+            title={photos[0].photos[0].title}
           />
         ) : (
           <NoResults />
