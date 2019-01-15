@@ -9,6 +9,7 @@ import { ErrorPage } from './components/ErrorPage';
 
 class App extends Component {
   state = {
+    loading: true,
     searches: [],
   };
 
@@ -17,25 +18,52 @@ class App extends Component {
   }&nojsoncallback=1&tags=`;
 
   componentDidMount() {
-    const defaultSearches = ['popular', 'cats', 'guinea-pigs'];
-    defaultSearches.forEach(key => {
-      const searchURL = this.baseURL + key;
-      this.retrievePhotos(searchURL, key);
-    });
-  }
-
-  retrievePhotos = (url, key) => {
-    fetch(url)
+    const topic = 'popular';
+    fetch(this.baseURL + topic)
       .then(response => response.json())
       .then(responseData => {
-        const dataObject = {
-          topic: key,
-          currentPage: responseData.photos.page,
+        const responseObject = {
+          topic: topic,
+          page: responseData.photos.page,
           photos: responseData.photos.photo,
         };
-        this.setState({
-          searches: [dataObject, ...this.state.searches],
-        });
+        this.setState(prevState => ({
+          searches: [...prevState.searches, responseObject],
+          loading: false,
+        }));
+      })
+      .catch(error => console.error(error));
+  }
+
+  getPhotos = topic => {
+    fetch(this.baseURL + topic)
+      .then(response => response.json())
+      .then(responseData => {
+        const responseObject = {
+          topic: topic,
+          page: responseData.photos.page,
+          photos: responseData.photos.photo,
+        };
+        const topicExists = this.state.searches.find(
+          search => search.topic === topic
+        );
+        if (topicExists) {
+          const newPage = topicExists.page < responseObject.page;
+          if (newPage) {
+            responseObject.photos = [
+              responseObject.photos,
+              ...topicExists.photos,
+            ];
+            this.setState(prevState => ({
+              searches: [...prevState.searches, responseObject],
+            }));
+          }
+        }
+        if (!topicExists) {
+          this.setState(prevState => ({
+            searches: [...prevState.searches, responseObject],
+          }));
+        }
       })
       .catch(error => console.error(error));
   };
@@ -44,13 +72,25 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Header retrievePhotos={this.retrievePhotos} />
+          <Header getPhotos={this.getPhotos} />
           <Switch>
             <Route
               exact
               path="/"
-              component={() => <Gallery photos={this.state.searches} />}
+              component={() => {
+                return this.state.loading ? (
+                  <h1>Loading...</h1>
+                ) : (
+                  <Gallery
+                    data={this.state.searches.find(
+                      search => search.topic === 'popular'
+                    )}
+                  />
+                );
+              }}
             />
+            <Route path="/topics" component={Header} />
+            <Route path="/history" component={Header} />
             <Route component={ErrorPage} />
           </Switch>
         </div>

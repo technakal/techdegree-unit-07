@@ -3,11 +3,11 @@ import React from 'react';
 import { SearchForm } from './SearchForm';
 import { Nav } from './Nav';
 
-export const Header = ({ retrievePhotos }) => {
+export const Header = ({ getPhotos }) => {
   return (
     <header>
       <h1>Gallery App</h1>
-      <SearchForm retrievePhotos={retrievePhotos} />
+      <SearchForm getPhotos={getPhotos} />
       <Nav />
     </header>
   );

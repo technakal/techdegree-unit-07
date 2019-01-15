@@ -4,7 +4,7 @@ export class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.query.value) {
-      this.props.retrievePhotos(this.query.value);
+      this.props.getPhotos(this.query.value);
       e.currentTarget.reset();
     }
   };
