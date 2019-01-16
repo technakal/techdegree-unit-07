@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SearchForm } from './SearchForm';
+import SearchForm from './SearchForm';
 import { Nav } from './Nav';
 
 export const Header = ({ getPhotos }) => {

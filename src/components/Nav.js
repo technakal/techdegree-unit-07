@@ -6,15 +6,15 @@ export const Nav = props => {
     <nav className="main-nav">
       <ul>
         <li>
-          <NavLink exact to="/">
+          <NavLink exact to="/topics/popular">
             Popular
           </NavLink>
         </li>
         <li>
-          <NavLink to="/topics">Topics</NavLink>
+          <NavLink to="/topics/cats">Cats</NavLink>
         </li>
         <li>
-          <NavLink to="/history">History</NavLink>
+          <NavLink to="/topics/guinea-pigs">Guinea Pigs</NavLink>
         </li>
       </ul>
     </nav>

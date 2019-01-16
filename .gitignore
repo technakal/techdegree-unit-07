@@ -10,7 +10,7 @@
 
 # development
 /mockups
-/src/config/dev.js
+/src/config/config.js
 
 # production
 /build

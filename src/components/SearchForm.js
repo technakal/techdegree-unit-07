@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export class SearchForm extends Component {
+class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
-    if (this.query.value) {
-      this.props.getPhotos(this.query.value);
+    const topic = this.query.value;
+    if (topic) {
+      const path = `/topics/${topic}`;
+      this.props.getPhotos(topic);
+      this.props.history.push(path);
       e.currentTarget.reset();
     }
   };
+
   render() {
     return (
       <form className="search-form" onSubmit={this.handleSubmit}>
@@ -33,3 +38,5 @@ export class SearchForm extends Component {
     );
   }
 }
+
+export default withRouter(SearchForm);
