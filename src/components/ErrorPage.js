@@ -1,11 +1,10 @@
 import React from 'react';
 
-export const ErrorPage = props => {
+export const ErrorPage = ({ type, message }) => {
   return (
     <div>
-      <h2>Page Not Found</h2>
-      <h3>That's called a "404" in developer-speak.</h3>
-      <p>Now go impress your friends with your new knowledge.</p>
+      <h2>{type}</h2>
+      <h3>{message}</h3>
     </div>
   );
 };

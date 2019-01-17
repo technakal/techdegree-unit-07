@@ -7,11 +7,14 @@ import { Header } from './components/Header';
 import { Gallery } from './components/Gallery';
 import { ErrorPage } from './components/ErrorPage';
 import { Loading } from './components/Loading';
+import { History } from './components/History';
 
 class App extends Component {
   state = {
-    loading: true,
+    isLoading: true,
+    hasError: false,
     searches: [],
+    currentSearch: '',
   };
 
   baseURL = `https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&extras=description,url_m&per_page=24&api_key=${
@@ -24,10 +27,17 @@ class App extends Component {
     this.getPhotos('guinea pigs');
   }
 
+  handleErrors = response => {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response.json();
+  };
+
   getPhotos = topic => {
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
     fetch(this.baseURL + topic)
-      .then(response => response.json())
+      .then(this.handleErrors)
       .then(responseData => {
         const responseObject = {
           topic: topic,
@@ -40,13 +50,17 @@ class App extends Component {
         if (!topicExists) {
           this.setState(prevState => ({
             searches: [...prevState.searches, responseObject],
-            loading: false,
+            isLoading: false,
+            currentSearch: topic,
           }));
         } else {
-          this.setState({ loading: false });
+          this.setState({ isLoading: false, currentSearch: topic });
         }
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.log(error.message);
+        this.setState({ hasError: true, isLoading: false });
+      });
   };
 
   render() {
@@ -55,19 +69,20 @@ class App extends Component {
         <div className="container">
           <Header getPhotos={this.getPhotos} />
           <Switch>
-            {this.state.loading ? (
+            {this.state.isLoading ? (
               <Loading />
             ) : (
               <Route
                 exact
                 path="/"
-                render={() => <Redirect to="/topics/popular" />}
+                render={() => <Redirect to="/topics/shinrin-yoku" />}
               />
             )}
             <Route
-              path="/topics/popular"
+              path="/topics/shinrin-yoku"
               render={() => (
                 <Gallery
+                  hasError={this.state.hasError}
                   data={this.state.searches.find(
                     search => search.topic === 'shinrin yoku'
                   )}
@@ -78,6 +93,7 @@ class App extends Component {
               path="/topics/cats"
               render={() => (
                 <Gallery
+                  hasError={this.state.hasError}
                   data={this.state.searches.find(
                     search => search.topic === 'cats'
                   )}
@@ -88,13 +104,43 @@ class App extends Component {
               path="/topics/guinea-pigs"
               render={() => (
                 <Gallery
+                  hasError={this.state.hasError}
                   data={this.state.searches.find(
                     search => search.topic === 'guinea pigs'
                   )}
                 />
               )}
             />
-            <Route component={ErrorPage} />
+            <Route
+              path={`/topics/${this.state.currentSearch.replace(/\s/, '-')}`}
+              render={() => (
+                <Gallery
+                  hasError={this.state.hasError}
+                  data={this.state.searches.find(
+                    search => search.topic === this.state.currentSearch
+                  )}
+                />
+              )}
+            />
+            <Route
+              path="/history"
+              render={() => (
+                <History
+                  hasError={this.state.hasError}
+                  history={this.state.searches.map(search =>
+                    search.topic.toLowerCase()
+                  )}
+                />
+              )}
+            />
+            <Route
+              render={() => (
+                <ErrorPage
+                  type="404 - Not Found"
+                  message="This page doesn't exist."
+                />
+              )}
+            />
           </Switch>
         </div>
       </BrowserRouter>

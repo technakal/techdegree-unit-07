@@ -1,10 +1,16 @@
 import React from 'react';
 
 import { GalleryItem } from './GalleryItem';
+import { ErrorPage } from './ErrorPage';
 import { NoResults } from './NoResults';
 
-export const Gallery = ({ data }) => {
-  if (data !== undefined) {
+export const Gallery = ({ data, hasError }) => {
+  if(hasError) {
+    return (
+      <ErrorPage type="Problem with Request" message="Something went wrong with the request to the server." />
+    )
+  }
+  if (data !== undefined && data.photos.length > 0) {
     const { topic, photos } = data;
     return (
       <div className="photo-container">
