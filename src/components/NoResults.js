@@ -1,10 +1,13 @@
 import React from 'react';
 
-export const NoResults = props => {
+/**
+ * DOM component for no results.
+ */
+export const NoResults = () => {
   return (
     <li className="not-found">
-      <h3>No Results Found</h3>
-      <p>Try a different topic.</p>
+      <h2>No Results Found</h2>
+      <h3>Try a different topic.</h3>
     </li>
   );
 };

@@ -14,7 +14,7 @@
   - The URL should reflect the current route.
   - The app should include at least three topic links (and their associated routes), which return galleries related to that topic.
   - Queue up the galleries at load, so that you don't have to request each time the topic is selected.
-- Make the app match the index.html, Results, and No-Results layouts.
+- TODO: Make the app match the index.html, Results, and No-Results layouts.
 - Use App.js as the main file for the app.
   - Manage as much state as possible in this file.
 - Create stateless components for your UI elements. Examples include:

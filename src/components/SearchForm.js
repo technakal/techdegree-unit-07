@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+/**
+ * The search form.
+ * Allows users to request custom photos, based on a match between topic and the "tag" parameter in Flickr.
+ * @class SearchForm
+ * @extends {Component}
+ */
 class SearchForm extends Component {
+  static propTypes = {
+    getPhotos: PropTypes.func.isRequired,
+  };
+
+  /**
+   * Handles the search process.
+   * Passes search criteria up to App component.
+   * Triggers route to search results.
+   * @param {function} getPhotos - Commmunicates search parameters up to parent element.
+   * @memberof SearchForm
+   */
   handleSubmit = e => {
     e.preventDefault();
     const topic = this.query.value;
