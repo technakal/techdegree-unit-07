@@ -50,6 +50,13 @@
 
 Images are from [unDraw](https://undraw.co/). Per the license, they require no attribution and can be used for any purpose, both commercial and non-commercial.
 
+#### Design Updates
+
+- updated color scheme
+- updated font selection
+- added a full-width header element
+- added illustrations throughout
+
 #### App Flow
 
 - Landing page

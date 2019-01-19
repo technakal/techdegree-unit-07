@@ -24,7 +24,7 @@ class SearchForm extends Component {
     e.preventDefault();
     const topic = this.query.value;
     if (topic) {
-      const path = `/topics/${topic.replace(/\s/, '-')}`;
+      const path = `/topics/${topic.replace(/\s/g, '-')}`;
       this.props.getPhotos(topic);
       this.props.history.push(path);
       e.currentTarget.reset();
