@@ -9,18 +9,24 @@ export const Nav = () => {
     <nav className="main-nav">
       <ul>
         <li>
-          <NavLink exact to="/topics/shinrin-yoku">
+          <NavLink activeClassName="nav-active" exact to="/topics/shinrin-yoku">
             Shinrin Yoku
           </NavLink>
         </li>
         <li>
-          <NavLink to="/topics/cats">Cats</NavLink>
+          <NavLink activeClassName="nav-active" to="/topics/cats">
+            Cats
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/topics/guinea-pigs">Guinea Pigs</NavLink>
+          <NavLink activeClassName="nav-active" to="/topics/guinea-pigs">
+            Guinea Pigs
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/history">History</NavLink>
+          <NavLink activeClassName="nav-active" to="/history">
+            History
+          </NavLink>
         </li>
       </ul>
     </nav>

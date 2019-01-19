@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import loadingImg from '../images/undraw_dreamer_gxxi.svg';
+
 /**
  * DOM component for isLoading state.
  * @class Loading
@@ -41,7 +43,12 @@ class Loading extends Component {
   };
 
   render() {
-    return <h1>{this.state.message}</h1>;
+    return (
+      <div>
+        <h2>{this.state.message}</h2>
+        <img src={loadingImg} alt="loading illustration" />
+      </div>
+    );
   }
 }
 

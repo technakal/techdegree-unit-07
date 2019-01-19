@@ -14,7 +14,7 @@ export const Gallery = ({ data }) => {
     const { topic, photos } = data;
     return (
       <div className="photo-container">
-        <h2>{topic[0].toUpperCase() + topic.slice(1, topic.length)}</h2>
+        <h2>{topic}</h2>
         <ul>
           {photos.map(img => (
             <GalleryItem key={img.id} url={img.url_m} />
@@ -24,7 +24,7 @@ export const Gallery = ({ data }) => {
     );
   } else {
     return (
-      <div className="photo-container">
+      <div>
         <ul>
           <NoResults />
         </ul>

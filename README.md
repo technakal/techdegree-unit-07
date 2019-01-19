@@ -14,7 +14,7 @@
   - The URL should reflect the current route.
   - The app should include at least three topic links (and their associated routes), which return galleries related to that topic.
   - Queue up the galleries at load, so that you don't have to request each time the topic is selected.
-- TODO: Make the app match the index.html, Results, and No-Results layouts.
+- Make the app match the index.html, Results, and No-Results layouts.
 - Use App.js as the main file for the app.
   - Manage as much state as possible in this file.
 - Create stateless components for your UI elements. Examples include:
@@ -47,6 +47,8 @@
 - Include a 404 route with a friendly 404 message.
 
 ### Design
+
+Images are from [unDraw](https://undraw.co/). Per the license, they require no attribution and can be used for any purpose, both commercial and non-commercial.
 
 #### App Flow
 

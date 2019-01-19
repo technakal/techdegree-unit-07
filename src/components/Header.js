@@ -13,7 +13,7 @@ import { Nav } from './Nav';
 export const Header = ({ getPhotos }) => {
   return (
     <header>
-      <h1>Gallery App</h1>
+      <h1>The Gallery</h1>
       <SearchForm getPhotos={getPhotos} />
       <Nav />
     </header>

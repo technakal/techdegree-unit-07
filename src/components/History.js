@@ -11,8 +11,14 @@ export const History = ({ history }) => {
     .sort()
     .map((item, index) => <HistoryItem key={index} topic={item} />);
   return (
-    <div>
-      <h1>Search History</h1>
+    <div className="history-container">
+      <h2>Search History</h2>
+      <h3>Here are all the things you've searched for.</h3>
+      <p>
+        {history.length > 5
+          ? "Looks like you've been busy."
+          : 'Just getting started?'}
+      </p>
       <ul className="history-list">{historyList}</ul>
     </div>
   );
