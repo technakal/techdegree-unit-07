@@ -26,7 +26,7 @@ class App extends Component {
    * @memberof App
    */
   componentDidMount() {
-    console.log(config.REACT_APP_FLICKR_KEY)
+    console.log(config)
     this.getPhotos('shinrin yoku');
     this.getPhotos('cats');
     this.getPhotos('guinea pigs');
