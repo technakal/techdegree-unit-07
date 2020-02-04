@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import config from './config/config';
+import config from './config/env_var';
 
 // components
 import { Header } from './components/Header';
@@ -18,7 +18,7 @@ class App extends Component {
   };
 
   baseURL = `https://api.flickr.com/services/rest/?method=flickr.photos.search&sort=relevance&format=json&extras=description,url_m&per_page=24&api_key=${
-    config.FLICKR_KEY
+    config.REACT_APP_FLICKR_KEY
     }&nojsoncallback=1&tags=`;
 
   /**
@@ -26,7 +26,7 @@ class App extends Component {
    * @memberof App
    */
   componentDidMount() {
-    console.log(config.FLICKR_KEY)
+    console.log(config.REACT_APP_FLICKR_KEY)
     this.getPhotos('shinrin yoku');
     this.getPhotos('cats');
     this.getPhotos('guinea pigs');
