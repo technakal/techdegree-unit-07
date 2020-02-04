@@ -1,6 +1,9 @@
 {
   "name": "techdegree-unit-07",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.6.0"
+  },
   "private": true,
   "dependencies": {
     "prop-types": "^15.6.2",

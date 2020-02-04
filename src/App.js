@@ -19,13 +19,14 @@ class App extends Component {
 
   baseURL = `https://api.flickr.com/services/rest/?method=flickr.photos.search&sort=relevance&format=json&extras=description,url_m&per_page=24&api_key=${
     config.FLICKR_KEY
-  }&nojsoncallback=1&tags=`;
+    }&nojsoncallback=1&tags=`;
 
   /**
    * Retrieves initial searches.
    * @memberof App
    */
   componentDidMount() {
+    console.log(config.FLICKR_KEY)
     this.getPhotos('shinrin yoku');
     this.getPhotos('cats');
     this.getPhotos('guinea pigs');
@@ -180,17 +181,17 @@ class App extends Component {
             {this.state.isLoading ? (
               <Loading />
             ) : (
-              <Route
-                render={() => (
-                  <ErrorPage
-                    error={{
-                      code: 'Not Found (404)',
-                      message: `We didn't plan for you to visit this page...`,
-                    }}
-                  />
-                )}
-              />
-            )}
+                <Route
+                  render={() => (
+                    <ErrorPage
+                      error={{
+                        code: 'Not Found (404)',
+                        message: `We didn't plan for you to visit this page...`,
+                      }}
+                    />
+                  )}
+                />
+              )}
           </Switch>
         </div>
       </BrowserRouter>
