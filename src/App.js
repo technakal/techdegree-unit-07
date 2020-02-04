@@ -26,7 +26,6 @@ class App extends Component {
    * @memberof App
    */
   componentDidMount() {
-    console.log(config)
     this.getPhotos('shinrin yoku');
     this.getPhotos('cats');
     this.getPhotos('guinea pigs');
